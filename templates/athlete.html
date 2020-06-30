@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Athlete page!
+{% endblock %}
+
+{% block body %}
+    <h2 class="">
+       {{ athletes.athlete }}
+    </h2>
+    <div class="">
+        {{ athletes.nation }}
+    </div>
+    <form action="{{ url_for('logout') }}">
+        <button>Log out</button>
+    </form>
+{% endblock %}

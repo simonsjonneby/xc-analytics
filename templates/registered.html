@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Registration completed!
+{% endblock %}
+
+{% block body %}
+<div class="">
+     Welcome {{ username }}!
+</div>
+<a href="{{ url_for('index') }}">
+  Return to Login  
+</a>
+
+{% endblock %}

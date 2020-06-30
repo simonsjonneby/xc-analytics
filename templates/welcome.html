@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+      <p class="p-4 text-center h1"> Latest results!</p>
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm table-wrapper-scroll-y">
+      <p class="text-center h3"">Women</p>
+      {{ table_women }}
+    </div>
+    <div class="col-sm">
+      <p class="text-center h3">Men</p>
+      {{ table_men }}
+    </div>
+  </div>
+</div>
+{% endblock %}

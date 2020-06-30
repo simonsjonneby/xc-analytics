@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Welcome!
+{% endblock %}
+
+{% block body %}
+    <div class="">
+      Hello, {{ username }}!
+    </div>
+    <div class="">
+      <ul>
+      {% for result in results %}
+          <li>
+              <a href="{{ url_for('athlete'', athlete_id=result.athlete_id) }}">
+                  {{ result.athlete_id }}
+              </a>
+          </li>
+      {% endfor %}
+  </ul>
+    </div>
+    <form action="{{ url_for('logout') }}">
+        <button>Log out</button>
+    </form>
+{% endblock %}
