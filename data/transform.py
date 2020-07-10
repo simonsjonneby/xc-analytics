@@ -208,10 +208,10 @@ Result.info()
 
 if os.path.isfile('transform/results.csv'):
     os.remove('transform/results.csv')
-Result.to_csv('transform/results.csv',encoding='utf-8')
+Result.to_csv('transform/results.csv',encoding='utf-8',header=False)
 if os.path.isfile('transform/athletes.csv'):
     os.remove('transform/athletes.csv')
-athletes.to_csv('transform/athletes.csv',encoding='utf-8')
+athletes.to_csv('transform/athletes.csv',encoding='utf-8',header=False)
 
 
 

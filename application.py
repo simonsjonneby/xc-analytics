@@ -2,7 +2,7 @@ import os
 import psycopg2
 from flask import Flask, session, render_template, request, jsonify, redirect, url_for
 from flask_session import Session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, and_
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 from flask_table import Table, Col, LinkCol
@@ -56,9 +56,7 @@ def registered():
 def login():
     username = request.form.get("username")
     password = request.form.get("password")
-    users = db.execute("SELECT id, username FROM users WHERE username = :username and password = :password",
-                        {"username": username,
-                        "password": password}).fetchone()
+    users = Users.query.filter(and_(Users.username == username, Users.password == password)).first()
 
     if users == None:
         return render_template("error.html")
@@ -75,10 +73,13 @@ def welcome():
     class ItemTable(Table):
         rank = Col('Rank')
         athlete_id = LinkCol("Athlete", "athlete", url_kwargs=dict(athlete_id='athlete_id'))
+        athlete_name = Col('Name')
+        event = Col('Event')
+        date = Col('Date')
         diff_time = Col('Diff time')
     # Or, more likely, load items from your database with something like
-    results_women = db.execute("SELECT * FROM results where event like '%Women%';").fetchall()
-    results_men = db.execute("SELECT * FROM results where event like '%Men%';").fetchall()
+    results_women = Results.query.filter_by(gender='Women')
+    results_men = Results.query.filter_by(gender='Men')
 
     # Populate the table
     table_women = ItemTable(results_women, classes=["table table-bordered table-striped"])
@@ -94,10 +95,11 @@ def athlete(athlete_id):
 
     """Lists details about a single athlete."""
 
-
-    athletes = db.execute("SELECT * FROM athletes WHERE id = :id", {"id": athlete_id}).fetchone()
+    wins = Results.query.filter(Results.rank == 1 , Results.athlete_id == athlete_id, Results.points == '1').count()
+    podiums = Results.query.filter(Results.rank <= 3 , Results.athlete_id == athlete_id, Results.points == '1').count()
+    athletes = Athletes.query.filter_by(id = athlete_id).first()
     if athletes is None:
         return render_template("error.html")
 
 
-    return render_template("athlete.html", athletes=athletes)
+    return render_template("athlete.html", athletes=athletes, wins=wins, podiums=podiums)

@@ -9,7 +9,13 @@
        {{ athletes.athlete }}
     </h2>
     <div class="">
-        {{ athletes.nation }}
+        Nation: {{ athletes.nation }}
+    </div>
+    <div class="">
+        Wins: {{ wins }}
+    </div>
+    <div class="">
+        Podiums: {{ podiums }}
     </div>
     <form action="{{ url_for('logout') }}">
         <button>Log out</button>

@@ -54,7 +54,7 @@ for url in places_urls:
 
 
 Result=pd.DataFrame()
-#races_urls = ['https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34331','https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34385','https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34381']
+#races_urls = ['https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34333','https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34331','https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34385','https://www.fis-ski.com/DB/general/results.html?sectorcode=CC&raceid=34381']
 for url in races_urls:
     labels=[]
     response = requests.get(url, timeout=5)
