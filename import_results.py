@@ -12,7 +12,7 @@ db.init_app(app)
 def main():
     f = open("data/transform/results.csv")
     reader = csv.reader(f)
-    for row, rank, bib, athlete_id, athlete_name, athlete_year_born, athlete_nation, time, diff_time, fis_points, event, place, date, result_type, season, technique, gender, individual_team, sprint_distance, distance, points in reader:
+    for row, rank, bib, athlete_id, athlete_name, athlete_year_born, athlete_nation, time, diff_time, fis_points, event, event_id, place, date, result_type, season, technique, gender, individual_team, sprint_distance, distance, points in reader:
         result = Results(
         row=row,
         rank=rank,
@@ -25,6 +25,7 @@ def main():
         diff_time=diff_time,
         fis_points=fis_points,
         event = event,
+        event_id = event_id,
         place = place,
         date = date,
         result_type = result_type,

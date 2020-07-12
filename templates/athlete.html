@@ -17,6 +17,23 @@
     <div class="">
         Podiums: {{ podiums }}
     </div>
+    <div class="">
+        Starts: {{ starts }}
+    </div>
+    <div class="">
+        Average result: {{ avg_pos }}, sprint: {{ avg_pos_sprint }}, distance: {{avg_pos_distance}}
+    </div>
+    <div class="">
+        Favourite place: {{ favourite_place }}
+    </div>
+    <div class="col-sm table-wrapper-scroll-y">
+      <p class="text-center h3"">Results</p>
+      {{ table_athlete }}
+    </div>
+    <div class="col-sm table-wrapper-scroll-y">
+      <p class="text-center h3"">Average rank by place</p>
+      {{ table_place }}
+    </div>
     <form action="{{ url_for('logout') }}">
         <button>Log out</button>
     </form>
